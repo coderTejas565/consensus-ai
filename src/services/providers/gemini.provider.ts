@@ -1,6 +1,7 @@
 import { geminiClient } from "@/lib/clients/gemini.client";
 import { BaseProvider } from "./base.provider";
-import { AIProvider } from "./provider.interface";
+import type { AIProvider } from "./provider.interface";
+import type { ModelRole } from "@/types/ai";
 
 export class GeminiProvider
   extends BaseProvider
@@ -8,7 +9,10 @@ export class GeminiProvider
 {
   private readonly providerName = "Gemini";
 
-  constructor(private readonly modelName: string) {
+  constructor(
+    public readonly role: ModelRole,
+    private readonly modelName: string
+  ) {
     super();
   }
 

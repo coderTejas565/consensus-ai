@@ -5,8 +5,19 @@ import { AIProvider } from "./provider.interface";
 
 export function createProviders(): AIProvider[] {
   return [
-    new GeminiProvider(MODELS.expertA),
-    new GeminiProvider(MODELS.expertB),
-    new GeminiProvider(MODELS.expertC),
+    new GeminiProvider(
+      "expertA",
+      MODELS.expertA
+    ),
+
+    new GeminiProvider(
+      "expertB",
+      MODELS.expertB
+    ),
+
+    new GeminiProvider(
+      "expertC",
+      MODELS.expertC
+    ),
   ];
 }

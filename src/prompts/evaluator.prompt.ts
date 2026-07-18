@@ -1,42 +1,43 @@
+import type { ExpertResponse } from "@/types/ai";
 export function buildEvaluatorPrompt(
-  question: string,
-  responses: string[]
-): string {
-  const expertLabels = ["Expert A", "Expert B", "Expert C"];
+ question:string,
+ responses:ExpertResponse[]
+){
 
-  const formattedResponses = responses
-    .map(
-      (response, index) => `
-${expertLabels[index] ?? `Expert ${index + 1}`}:
-${response}
+const formattedResponses = responses
+.map(
+(response)=>`
+
+${response.role.toUpperCase()}:
+
+${response.answer}
+
 `
-    )
-    .join("\n");
+)
+.join("\n");
 
-  return `
+
+return `
 You are an expert AI evaluator.
-
-Your task is to analyze multiple expert responses to the same user question and produce a single, high-quality answer.
 
 User Question:
 ${question}
 
 Expert Responses:
+
 ${formattedResponses}
 
 Instructions:
 
-- Carefully compare all expert responses.
-- Identify the strongest ideas, explanations, and reasoning.
-- Prefer information that appears consistently across multiple responses.
-- If responses disagree, choose the explanation that is the most accurate, complete, and well-reasoned.
-- Remove incorrect, repetitive, or weaker information.
-- Combine the best parts into one clear, coherent, and well-structured answer.
-- Do not mention the experts or compare their responses.
-- Do not say which response you selected.
-- Write the answer as if you generated it yourself.
-- Return only the final synthesized answer.
+- Carefully compare all responses.
+- Identify the strongest reasoning.
+- Prefer accurate and consistent information.
+- Remove incorrect or repetitive content.
+- Create one final answer.
+- Do not mention experts.
 
-Final Answer:
+Return only the final answer.
+
 `.trim();
+
 }
