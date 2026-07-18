@@ -8,10 +8,14 @@ export class GeminiProvider
 {
   private readonly providerName = "Gemini";
 
+  constructor(private readonly modelName: string) {
+    super();
+  }
+
   async generateResponse(prompt: string): Promise<string> {
     return this.execute(async () => {
       const model = geminiClient.getGenerativeModel({
-        model: "gemini-2.5-flash",
+        model: this.modelName,
       });
 
       const result = await model.generateContent(prompt);
