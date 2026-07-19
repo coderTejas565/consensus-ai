@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
-  Raleway,
+  Manrope,
 } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -12,25 +12,20 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 
-
 const geistSans = Geist({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
-
-const raleway = Raleway({
+const manrope = Manrope({
   variable: "--font-heading",
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Consensus AI",
@@ -38,26 +33,22 @@ export const metadata: Metadata = {
     "Generate better answers by combining multiple AI perspectives.",
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         geistSans.variable,
         geistMono.variable,
-        raleway.variable
+        manrope.variable
       )}
     >
-
       <body
         className="
           min-h-screen
@@ -67,15 +58,15 @@ export default function RootLayout({
           antialiased
         "
       >
-
-          <ThemeProvider>
-    {children}
-  </ThemeProvider>
-
-
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
-
     </html>
-
   );
 }

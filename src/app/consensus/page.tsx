@@ -3,6 +3,7 @@
 import { useAnswer } from "@/hooks/use-answer";
 
 import { Navbar } from "@/components/layout/navbar";
+import { ConsensusEmpty } from "@/components/shared/consensus-empty";
 import { PromptInput } from "@/components/prompt/prompt-input";
 import { ConsensusAnswer } from "@/components/response/consensus-answer";
 import { ExpertResponses } from "@/components/response/expert-responses";
@@ -23,32 +24,34 @@ export default function Home() {
     <main className="min-h-screen">
 
       <Navbar />
-      
-      <section className="mx-auto flex max-w-5xl flex-col gap-12 px-6 py-20">
 
 
-        {/* Hero */}
+      <section
+        className="
+          mx-auto
+          flex
+          max-w-5xl
+          flex-col
+          gap-10
+          px-6
+          py-16
+        "
+      >
 
-        <div className="mx-auto max-w-3xl text-center space-y-5">
 
-          <h1 className="text-5xl font-semibold tracking-tight">
-            Consensus AI
-          </h1>
-
-
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Ask one question.
-            Multiple AI perspectives analyze it.
-            One refined answer is generated.
-          </p>
-
-        </div>
+        {!data && !loading && (
+          <ConsensusEmpty />
+        )}
 
 
 
-        {/* Prompt */}
-
-        <div className="mx-auto w-full max-w-3xl">
+        <div
+          className="
+            mx-auto
+            w-full
+            max-w-3xl
+          "
+        >
 
           <PromptInput
             onSubmit={ask}
@@ -59,29 +62,50 @@ export default function Home() {
 
 
 
-        {/* Loading */}
 
         {loading && (
-          <div className="mx-auto w-full max-w-3xl">
+
+          <div
+            className="
+              mx-auto
+              w-full
+              max-w-3xl
+            "
+          >
             <LoadingState />
           </div>
+
         )}
 
 
 
-        {/* Error */}
+
 
         {error && (
-          <p className="text-center text-sm text-destructive">
+
+          <p
+            className="
+              text-center
+              text-sm
+              text-destructive
+            "
+          >
             {error}
           </p>
+
         )}
 
-        {/* Results */}
+
+
+
 
         {data && (
-          <section className="space-y-8">
 
+          <section
+            className="
+              space-y-8
+            "
+          >
 
             <ConsensusAnswer
               answer={data.finalAnswer}
@@ -94,10 +118,12 @@ export default function Home() {
 
 
           </section>
+
         )}
 
 
       </section>
+
 
     </main>
   );

@@ -1,11 +1,10 @@
 import {
-  Brain,
-  CheckCircle2,
+  BrainCircuit,
+  LoaderCircle,
   Sparkles,
 } from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
-
 
 const steps = [
   "Analyzing expert perspectives",
@@ -13,14 +12,11 @@ const steps = [
   "Synthesizing final answer",
 ];
 
-
 export function LoadingState() {
-
   return (
-
     <div
       className="
-        space-y-6
+        space-y-8
         rounded-3xl
         border
         bg-card
@@ -28,183 +24,109 @@ export function LoadingState() {
         shadow-sm
       "
     >
-
       {/* Header */}
 
-      <div
-        className="
-          flex
-          items-center
-          gap-4
-        "
-      >
-
+      <div className="flex items-center gap-4">
         <div
           className="
             flex
-            h-11
-            w-11
+            h-12
+            w-12
             items-center
             justify-center
-            rounded-full
-            bg-primary
-            text-primary-foreground
+            rounded-2xl
+            bg-primary/10
+            text-primary
           "
         >
-
-          <Brain
-            className="
-              h-5
-              w-5
-            "
-          />
-
+          <BrainCircuit className="h-6 w-6 animate-pulse" />
         </div>
-
 
         <div>
-
-          <p
-            className="
-              font-semibold
-            "
-          >
+          <h3 className="font-semibold">
             Building consensus
+          </h3>
+
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            Multiple AI experts are reasoning independently before producing one refined answer.
           </p>
-
-
-          <p
-            className="
-              text-sm
-              text-muted-foreground
-            "
-          >
-            Multiple AI perspectives are being analyzed
-          </p>
-
         </div>
-
-
       </div>
 
+      {/* Progress */}
 
-
-      {/* Processing steps */}
-
-      <div
-        className="
-          space-y-3
-        "
-      >
-
-        {
-          steps.map(
-            (step, index) => (
-
+      <div className="space-y-5">
+        {steps.map((step, index) => (
+          <div
+            key={step}
+            className="flex items-start gap-4"
+          >
+            <div className="flex flex-col items-center">
               <div
-                key={step}
                 className="
                   flex
+                  h-8
+                  w-8
                   items-center
-                  gap-3
+                  justify-center
+                  rounded-full
+                  border
+                  bg-background
                 "
               >
-
-                <div
+                <LoaderCircle
                   className="
-                    flex
-                    h-5
-                    w-5
-                    items-center
-                    justify-center
+                    h-4
+                    w-4
+                    animate-spin
+                    text-primary
                   "
-                >
-
-                  {
-                    index === 2 ? (
-
-                      <Sparkles
-                        className="
-                          h-4
-                          w-4
-                          text-primary
-                        "
-                      />
-
-                    ) : (
-
-                      <CheckCircle2
-                        className="
-                          h-4
-                          w-4
-                          text-muted-foreground
-                        "
-                      />
-
-                    )
-                  }
-
-                </div>
-
-
-                <span
-                  className="
-                    text-sm
-                  "
-                >
-                  {step}
-                </span>
-
-
+                />
               </div>
 
-            )
-          )
-        }
+              {index !== steps.length - 1 && (
+                <div
+                  className="
+                    mt-2
+                    h-6
+                    w-px
+                    bg-border
+                  "
+                />
+              )}
+            </div>
 
+            <div className="pt-1">
+              <p className="text-sm font-medium">
+                {step}
+              </p>
 
+              <p className="text-xs text-muted-foreground">
+                In progress...
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
 
-
-
-
-      {/* Answer preview */}
+      {/* Answer Preview */}
 
       <div
         className="
           space-y-3
-          rounded-xl
-          bg-secondary/30
-          p-4
+          rounded-2xl
+          border
+          bg-background
+          p-5
         "
       >
-
-        <Skeleton
-          className="
-            h-4
-            w-full
-          "
-        />
-
-        <Skeleton
-          className="
-            h-4
-            w-full
-          "
-        />
-
-        <Skeleton
-          className="
-            h-4
-            w-3/4
-          "
-        />
-
-
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-5/6" />
+        <Skeleton className="h-4 w-2/3" />
       </div>
 
-
-
+      {/* Footer */}
 
       <div
         className="
@@ -215,20 +137,12 @@ export function LoadingState() {
           text-muted-foreground
         "
       >
+        <Sparkles className="h-3.5 w-3.5 text-primary" />
 
-        <Sparkles
-          className="
-            h-3.5
-            w-3.5
-          "
-        />
-
-        Creating the final consensus response
-
+        <span>
+          Crafting your consensus answer...
+        </span>
       </div>
-
-
     </div>
-
   );
 }
