@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { GitMerge } from "lucide-react";
 
 import {
   Card,
@@ -7,144 +7,127 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Badge } from "@/components/ui/badge";
-
-
 interface ConsensusAnswerProps {
   answer: string;
 }
 
-
 export function ConsensusAnswer({
   answer,
 }: ConsensusAnswerProps) {
-
   return (
     <Card
       className="
         overflow-hidden
-        border-primary/20
-        bg-card
-        shadow-sm
+        rounded-3xl
+        border
+        border-border/50
+        bg-card/70
+        shadow-xl
+        shadow-black/5
+        backdrop-blur-xl
       "
     >
-
       <CardHeader
         className="
-          border-b
-          bg-secondary/20
-          px-6
-          py-5
-        "
-      >
-
-        <div
-          className="
-            flex
-            items-start
-            justify-between
-            gap-4
-          "
-        >
-
-          <div
-            className="
-              flex
-              items-center
-              gap-3
-            "
-          >
-
-            <div
-              className="
-                flex
-                h-10
-                w-10
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                bg-primary
-                text-primary-foreground
-              "
-            >
-
-              <Sparkles
-                className="
-                  h-5
-                  w-5
-                "
-              />
-
-            </div>
-
-
-            <div>
-
-              <CardTitle
-                className="
-                  text-xl
-                  font-semibold
-                "
-              >
-                Consensus Answer
-              </CardTitle>
-
-
-              <p
-                className="
-                  mt-1
-                  text-sm
-                  text-muted-foreground
-                "
-              >
-                Synthesized from multiple AI perspectives
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <Badge
-            variant="secondary"
-            className="
-              hidden
-              sm:flex
-            "
-          >
-            Final synthesis
-          </Badge>
-
-
-        </div>
-
-      </CardHeader>
-
-
-
-      <CardContent
-        className="
-          px-6
+          relative
+          overflow-hidden
+          px-7
           py-7
         "
       >
+        {/* subtle divider */}
 
-        <p
+        <div
           className="
-            whitespace-pre-wrap
-            text-[15px]
-            leading-8
-            tracking-wide
+            absolute
+            bottom-0
+            left-7
+            right-7
+            h-px
+            bg-border
+          "
+        />
+
+        {/* subtle gradient */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-br
+            from-primary/[0.05]
+            via-transparent
+            to-transparent
+            pointer-events-none
+          "
+        />
+
+        <div className="relative flex items-center gap-4">
+          <div
+            className="
+              flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-2xl
+              bg-primary/10
+              text-primary
+              ring-1
+              ring-primary/15
+            "
+          >
+            <GitMerge className="h-5 w-5" />
+          </div>
+
+          <div>
+            <CardTitle
+              className="
+                font-heading
+                text-2xl
+                font-semibold
+                tracking-tight
+              "
+            >
+              Consensus Answer
+            </CardTitle>
+
+            <p
+              className="
+                mt-1
+                text-sm
+                leading-relaxed
+                text-muted-foreground
+              "
+            >
+              One refined answer synthesized from multiple AI perspectives.
+            </p>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent
+        className="
+          px-7
+          py-8
+        "
+      >
+        <div
+          className="
+            prose
+            prose-neutral
+            dark:prose-invert
+            max-w-none
+            text-lg
+            leading-9
+            tracking-tight
           "
         >
-          {answer}
-        </p>
-
-
+          <p className="whitespace-pre-wrap">
+            {answer}
+          </p>
+        </div>
       </CardContent>
-
-
     </Card>
   );
 }

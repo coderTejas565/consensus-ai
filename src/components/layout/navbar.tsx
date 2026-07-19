@@ -16,24 +16,43 @@ export function Navbar() {
     >
       <div
         className="
+          relative
           mx-auto
           flex
-          h-16
+          h-[68px]
           max-w-5xl
           items-center
           justify-between
-          rounded-2xl
+          overflow-hidden
+          rounded-3xl
           border
-          border-border/40
-          bg-background/70
+          border-white/10
+          bg-background/55
           px-6
-          shadow-lg
+          shadow-xl
           shadow-black/5
-          transition-all
-          duration-200
-          supports-[backdrop-filter]:backdrop-blur-xl
+          ring-1
+          ring-black/5
+          supports-[backdrop-filter]:backdrop-blur-2xl
         "
       >
+        {/* subtle highlight */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-x-0
+            top-0
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-white/30
+            to-transparent
+            dark:via-white/10
+          "
+        />
+
         <Link
           href="/"
           aria-label="Go to home page"
@@ -41,58 +60,84 @@ export function Navbar() {
             group
             flex
             items-center
-            gap-3
+            gap-4
           "
         >
-          <span
+          <div
             className="
+              relative
               flex
-              h-9
-              w-9
+              h-11
+              w-11
               shrink-0
               items-center
               justify-center
-              rounded-xl
-              bg-primary/90
+              rounded-2xl
+              bg-gradient-to-br
+              from-primary
+              to-primary/80
               text-primary-foreground
-              ring-1
-              ring-primary/20
-              shadow-md
-              shadow-black/5
-              transition-transform
-              duration-200
-              group-hover:scale-105
+              shadow-lg
+              shadow-primary/20
+              transition-all
+              duration-300
+              group-hover:-translate-y-0.5
+              group-hover:shadow-xl
             "
           >
-            <GitMerge className="h-4 w-4" />
-          </span>
+            <div
+              className="
+                absolute
+                inset-0
+                rounded-2xl
+                ring-1
+                ring-white/20
+              "
+            />
+
+            <GitMerge className="relative h-5 w-5" />
+          </div>
 
           <div className="leading-none">
-            <p
+            <h1
               className="
                 font-heading
-                text-lg
+                text-[18px]
                 font-semibold
                 tracking-tight
               "
             >
               Consensus AI
-            </p>
+            </h1>
 
             <p
               className="
                 hidden
+                pt-1
                 text-xs
+                font-medium
+                tracking-wide
                 text-muted-foreground
                 sm:block
               "
             >
-              Multiple perspectives
+              Multiple AI perspectives
             </p>
           </div>
         </Link>
 
-        <ThemeToggle />
+        <div
+          className="
+            rounded-xl
+            border
+            border-border/50
+            bg-background/60
+            p-1
+            backdrop-blur
+          "
+        >
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

@@ -29,12 +29,13 @@ export async function POST(request: Request) {
     console.error(error);
 
     return NextResponse.json(
-      {
-        message: "Failed to generate answer.",
-      },
-      {
-        status: 500,
-      }
-    );
+  {
+    message:
+      "The AI service has reached its daily free quota. Please try again later.",
+  },
+  {
+    status: 429,
+  }
+);
   }
 }

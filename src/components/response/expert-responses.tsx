@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import {
+  BrainCircuit,
   ChevronDown,
   ChevronUp,
-  Brain,
 } from "lucide-react";
 
 import type { ExpertResponse } from "@/types/ai";
@@ -22,13 +22,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Badge } from "@/components/ui/badge";
-
-
 interface ExpertResponsesProps {
   responses: ExpertResponse[];
 }
-
 
 function formatRole(role: string) {
   return role
@@ -37,24 +33,17 @@ function formatRole(role: string) {
     .trim();
 }
 
-
-
 export function ExpertResponses({
   responses,
 }: ExpertResponsesProps) {
-
   const [open, setOpen] = useState(false);
 
-
   return (
-
     <Collapsible
       open={open}
       onOpenChange={setOpen}
       className="space-y-5"
     >
-
-
       <CollapsibleTrigger
         className="
           group
@@ -62,215 +51,141 @@ export function ExpertResponses({
           w-full
           items-center
           justify-between
-          rounded-2xl
+          rounded-3xl
           border
-          bg-card
-          px-6
-          py-5
+          border-border/50
+          bg-card/70
+          px-7
+          py-6
           text-left
-          transition
-          hover:bg-secondary/30
+          shadow-lg
+          shadow-black/5
+          backdrop-blur-xl
+          transition-all
+          duration-300
+          hover:border-primary/20
+          hover:bg-card/80
         "
       >
-
-        <div
-          className="
-            flex
-            items-center
-            gap-4
-          "
-        >
-
+        <div className="flex items-center gap-4">
           <div
             className="
               flex
-              h-10
-              w-10
+              h-11
+              w-11
               items-center
               justify-center
-              rounded-full
-              bg-secondary
+              rounded-2xl
+              bg-primary/10
+              text-primary
+              ring-1
+              ring-primary/15
             "
           >
-
-            <Brain
-              className="
-                h-5
-                w-5
-                text-primary
-              "
-            />
-
+            <BrainCircuit className="h-5 w-5" />
           </div>
 
-
           <div>
-
-            <p
+            <h3
               className="
-                font-medium
+                font-heading
+                text-xl
+                font-semibold
+                tracking-tight
               "
             >
               Expert Perspectives
-            </p>
-
+            </h3>
 
             <p
               className="
+                mt-1
                 text-sm
                 text-muted-foreground
               "
             >
-              Compare individual AI reasoning paths
+              See how each AI independently approached your question.
             </p>
-
-
           </div>
-
-
         </div>
 
-
-
-        {
-          open ? (
-
-            <ChevronUp
-              className="
-                h-5
-                w-5
-                text-muted-foreground
-              "
-            />
-
+        <div
+          className="
+            rounded-xl
+            border
+            border-border/50
+            bg-background/60
+            p-2
+            transition-transform
+            duration-200
+          "
+        >
+          {open ? (
+            <ChevronUp className="h-5 w-5 text-muted-foreground" />
           ) : (
-
-            <ChevronDown
-              className="
-                h-5
-                w-5
-                text-muted-foreground
-              "
-            />
-
-          )
-        }
-
-
+            <ChevronDown className="h-5 w-5 text-muted-foreground" />
+          )}
+        </div>
       </CollapsibleTrigger>
 
-
-
-      <CollapsibleContent
-        className="
-          space-y-4
-        "
-      >
-
-        {
-          responses.map(
-            (response, index) => (
-
-              <Card
-                key={response.role}
+      <CollapsibleContent className="space-y-5">
+        {responses.map((response) => (
+          <Card
+            key={response.role}
+            className="
+              rounded-3xl
+              border
+              border-border/50
+              bg-card/70
+              shadow-sm
+              backdrop-blur-xl
+            "
+          >
+            <CardHeader
+              className="
+                border-b
+                border-border/40
+                px-7
+                py-5
+              "
+            >
+              <CardTitle
                 className="
-                  border
-                  bg-card/70
-                  shadow-none
+                  font-heading
+                  text-lg
+                  font-semibold
+                  tracking-tight
                 "
               >
+                {formatRole(response.role)}
+              </CardTitle>
+            </CardHeader>
 
-                <CardHeader
-                  className="
-                    flex-row
-                    items-center
-                    justify-between
-                    space-y-0
-                    pb-3
-                  "
-                >
-
-                  <div
-                    className="
-                      flex
-                      items-center
-                      gap-3
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-7
-                        w-7
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-secondary
-                        text-xs
-                        font-medium
-                      "
-                    >
-                      {index + 1}
-                    </div>
-
-
-                    <CardTitle
-                      className="
-                        text-sm
-                        font-medium
-                      "
-                    >
-                      {formatRole(response.role)}
-                    </CardTitle>
-
-
-                  </div>
-
-
-
-                  <Badge
-                    variant="secondary"
-                    className="
-                      text-xs
-                    "
-                  >
-                    Perspective
-                  </Badge>
-
-
-                </CardHeader>
-
-
-
-                <CardContent>
-
-                  <p
-                    className="
-                      whitespace-pre-wrap
-                      text-sm
-                      leading-7
-                      text-muted-foreground
-                    "
-                  >
-                    {response.answer}
-                  </p>
-
-
-                </CardContent>
-
-
-              </Card>
-
-            )
-          )
-        }
-
-
+            <CardContent
+              className="
+                px-7
+                py-6
+              "
+            >
+              <div
+                className="
+                  prose
+                  prose-neutral
+                  dark:prose-invert
+                  max-w-none
+                  text-[15px]
+                  leading-8
+                  text-muted-foreground
+                "
+              >
+                <p className="whitespace-pre-wrap">
+                  {response.answer}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </CollapsibleContent>
-
-
     </Collapsible>
-
   );
 }

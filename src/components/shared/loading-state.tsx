@@ -1,7 +1,7 @@
 import {
   BrainCircuit,
   LoaderCircle,
-  Sparkles,
+  GitMerge,
 } from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -43,12 +43,27 @@ export function LoadingState() {
         </div>
 
         <div>
-          <h3 className="font-semibold">
+          <h3
+            className="
+              font-heading
+              text-lg
+              font-semibold
+              tracking-tight
+            "
+          >
             Building consensus
           </h3>
 
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-            Multiple AI experts are reasoning independently before producing one refined answer.
+          <p
+            className="
+              mt-1
+              text-sm
+              leading-6
+              text-muted-foreground
+            "
+          >
+            Multiple AI experts are reasoning independently before producing one
+            refined answer.
           </p>
         </div>
       </div>
@@ -97,11 +112,24 @@ export function LoadingState() {
             </div>
 
             <div className="pt-1">
-              <p className="text-sm font-medium">
+              <p
+                className="
+                  text-sm
+                  font-medium
+                  tracking-tight
+                "
+              >
                 {step}
               </p>
 
-              <p className="text-xs text-muted-foreground">
+              <p
+                className="
+                  mt-1
+                  text-xs
+                  leading-5
+                  text-muted-foreground
+                "
+              >
                 In progress...
               </p>
             </div>
@@ -134,12 +162,13 @@ export function LoadingState() {
           items-center
           gap-2
           text-xs
+          leading-5
           text-muted-foreground
         "
       >
-        <Sparkles className="h-3.5 w-3.5 text-primary" />
+        <GitMerge className="h-3.5 w-3.5 text-primary" />
 
-        <span>
+        <span className="font-medium">
           Crafting your consensus answer...
         </span>
       </div>
