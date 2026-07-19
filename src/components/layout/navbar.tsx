@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { GitMerge } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 
-import { ThemeToggle } from "@/components/shared/theme-toggle";
+type NavbarProps = {
+  variant?: "landing" | "app";
+};
 
-export function Navbar() {
+export function Navbar({
+  variant = "landing",
+}: NavbarProps) {
   return (
     <header
       className="
@@ -20,24 +25,21 @@ export function Navbar() {
           mx-auto
           flex
           h-[68px]
-          max-w-5xl
+          max-w-7xl
           items-center
           justify-between
           overflow-hidden
           rounded-3xl
           border
-          border-white/10
-          bg-background/55
+          border-border/50
+          bg-background/70
           px-6
-          shadow-xl
+          shadow-lg
           shadow-black/5
-          ring-1
-          ring-black/5
-          supports-[backdrop-filter]:backdrop-blur-2xl
+          backdrop-blur-xl
         "
       >
-        {/* subtle highlight */}
-
+        {/* Glass shine */}
         <div
           className="
             pointer-events-none
@@ -47,15 +49,16 @@ export function Navbar() {
             h-px
             bg-gradient-to-r
             from-transparent
-            via-white/30
+            via-foreground/20
             to-transparent
-            dark:via-white/10
           "
         />
 
+
+        {/* Logo */}
         <Link
           href="/"
-          aria-label="Go to home page"
+          aria-label="Consensus AI home"
           className="
             group
             flex
@@ -73,13 +76,11 @@ export function Navbar() {
               items-center
               justify-center
               rounded-2xl
-              bg-gradient-to-br
-              from-primary
-              to-primary/80
+              bg-primary
               text-primary-foreground
               shadow-lg
               shadow-primary/20
-              transition-all
+              transition
               duration-300
               group-hover:-translate-y-0.5
               group-hover:shadow-xl
@@ -97,6 +98,7 @@ export function Navbar() {
 
             <GitMerge className="relative h-5 w-5" />
           </div>
+
 
           <div className="leading-none">
             <h1
@@ -126,17 +128,63 @@ export function Navbar() {
           </div>
         </Link>
 
-        <div
-          className="
-            rounded-xl
-            border
-            border-border/50
-            bg-background/60
-            p-1
-            backdrop-blur
-          "
-        >
-          <ThemeToggle />
+
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+
+          {variant === "landing" && (
+            <>
+              {/* Github */}
+              <Link
+                href="https://github.com"
+                target="_blank"
+                className="
+                  hidden
+                  items-center
+                  gap-2
+                  rounded-2xl
+                  border
+                  border-border/50
+                  bg-background/50
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-medium
+                  transition
+                  hover:-translate-y-0.5
+                  hover:shadow-md
+                  sm:flex
+                "
+              >
+                <SiGithub className="h-4 w-4" />
+
+                GitHub
+              </Link>
+
+
+              {/* Try Consensus */}
+              <Link
+                href="/consensus"
+                className="
+                  rounded-2xl
+                  bg-primary
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-medium
+                  text-primary-foreground
+                  shadow-lg
+                  shadow-primary/20
+                  transition
+                  hover:-translate-y-0.5
+                  hover:shadow-xl
+                "
+              >
+                Try Consensus
+              </Link>
+            </>
+          )}
+
         </div>
       </div>
     </header>

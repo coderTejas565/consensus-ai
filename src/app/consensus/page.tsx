@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
 
-      <Navbar />
+      <Navbar variant="app" />
 
 
       <section
