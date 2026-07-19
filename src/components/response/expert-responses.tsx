@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Brain } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Brain,
+} from "lucide-react";
 
 import type { ExpertResponse } from "@/types/ai";
 
@@ -34,6 +38,7 @@ function formatRole(role: string) {
 }
 
 
+
 export function ExpertResponses({
   responses,
 }: ExpertResponsesProps) {
@@ -42,11 +47,13 @@ export function ExpertResponses({
 
 
   return (
+
     <Collapsible
       open={open}
       onOpenChange={setOpen}
       className="space-y-5"
     >
+
 
       <CollapsibleTrigger
         className="
@@ -55,57 +62,100 @@ export function ExpertResponses({
           w-full
           items-center
           justify-between
-          rounded-xl
+          rounded-2xl
           border
           bg-card
-          px-5
-          py-4
-          text-sm
-          font-medium
+          px-6
+          py-5
+          text-left
           transition
-          hover:bg-secondary/40
+          hover:bg-secondary/30
         "
       >
 
-        <div className="flex items-center gap-3">
+        <div
+          className="
+            flex
+            items-center
+            gap-4
+          "
+        >
 
           <div
             className="
               flex
-              h-8
-              w-8
+              h-10
+              w-10
               items-center
               justify-center
               rounded-full
               bg-secondary
             "
           >
-            <Brain className="h-4 w-4 text-primary" />
+
+            <Brain
+              className="
+                h-5
+                w-5
+                text-primary
+              "
+            />
+
           </div>
 
 
-          <div className="text-left">
+          <div>
 
-            <p>
+            <p
+              className="
+                font-medium
+              "
+            >
               Expert Perspectives
             </p>
 
-            <p className="text-xs text-muted-foreground">
-              View individual AI responses
+
+            <p
+              className="
+                text-sm
+                text-muted-foreground
+              "
+            >
+              Compare individual AI reasoning paths
             </p>
 
+
           </div>
+
 
         </div>
 
 
-        {open
-          ? (
-            <ChevronUp className="h-4 w-4" />
+
+        {
+          open ? (
+
+            <ChevronUp
+              className="
+                h-5
+                w-5
+                text-muted-foreground
+              "
+            />
+
+          ) : (
+
+            <ChevronDown
+              className="
+                h-5
+                w-5
+                text-muted-foreground
+              "
+            />
+
           )
-          : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+        }
+
 
       </CollapsibleTrigger>
 
@@ -117,66 +167,110 @@ export function ExpertResponses({
         "
       >
 
-        {responses.map((response) => (
+        {
+          responses.map(
+            (response, index) => (
 
-          <Card
-            key={response.role}
-            className="
-              border-dashed
-              shadow-none
-            "
-          >
-
-            <CardHeader
-              className="
-                flex-row
-                items-center
-                justify-between
-                space-y-0
-                pb-3
-              "
-            >
-
-              <CardTitle
+              <Card
+                key={response.role}
                 className="
-                  text-sm
-                  font-medium
+                  border
+                  bg-card/70
+                  shadow-none
                 "
               >
-                {formatRole(response.role)}
-              </CardTitle>
+
+                <CardHeader
+                  className="
+                    flex-row
+                    items-center
+                    justify-between
+                    space-y-0
+                    pb-3
+                  "
+                >
+
+                  <div
+                    className="
+                      flex
+                      items-center
+                      gap-3
+                    "
+                  >
+
+                    <div
+                      className="
+                        flex
+                        h-7
+                        w-7
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-secondary
+                        text-xs
+                        font-medium
+                      "
+                    >
+                      {index + 1}
+                    </div>
 
 
-              <Badge
-                variant="secondary"
-              >
-                AI Model
-              </Badge>
+                    <CardTitle
+                      className="
+                        text-sm
+                        font-medium
+                      "
+                    >
+                      {formatRole(response.role)}
+                    </CardTitle>
 
-            </CardHeader>
+
+                  </div>
 
 
-            <CardContent>
 
-              <p
-                className="
-                  whitespace-pre-wrap
-                  text-sm
-                  leading-7
-                  text-muted-foreground
-                "
-              >
-                {response.answer}
-              </p>
+                  <Badge
+                    variant="secondary"
+                    className="
+                      text-xs
+                    "
+                  >
+                    Perspective
+                  </Badge>
 
-            </CardContent>
 
-          </Card>
+                </CardHeader>
 
-        ))}
+
+
+                <CardContent>
+
+                  <p
+                    className="
+                      whitespace-pre-wrap
+                      text-sm
+                      leading-7
+                      text-muted-foreground
+                    "
+                  >
+                    {response.answer}
+                  </p>
+
+
+                </CardContent>
+
+
+              </Card>
+
+            )
+          )
+        }
+
 
       </CollapsibleContent>
 
+
     </Collapsible>
+
   );
 }

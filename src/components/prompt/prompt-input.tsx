@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,13 +24,12 @@ export function PromptInput({
   function handleSubmit(
     event: React.FormEvent<HTMLFormElement>
   ) {
-    event.preventDefault();
 
+    event.preventDefault();
 
     const trimmedPrompt = prompt.trim();
 
-
-    if (!trimmedPrompt) return;
+    if (!trimmedPrompt || loading) return;
 
 
     onSubmit(trimmedPrompt);
@@ -41,69 +39,139 @@ export function PromptInput({
 
 
   return (
+
     <form
       onSubmit={handleSubmit}
       className="
-        rounded-2xl
+        rounded-3xl
         border
         bg-card
-        p-3
+        p-4
         shadow-sm
-        transition
-        focus-within:ring-2
-        focus-within:ring-primary/30
+        transition-all
+        duration-200
+        focus-within:border-primary/40
+        focus-within:ring-4
+        focus-within:ring-primary/10
       "
     >
 
       <Textarea
+
         value={prompt}
+
         onChange={(event) =>
           setPrompt(event.target.value)
         }
-        placeholder="Ask a question and compare AI perspectives..."
-        rows={5}
+
+        disabled={loading}
+
+        aria-label="Ask a question"
+
+        placeholder="
+          Ask a question and compare AI perspectives...
+        "
+
+        rows={6}
+
         className="
+          min-h-32
           resize-none
           border-0
           bg-transparent
-          shadow-none
-          focus-visible:ring-0
+          px-2
           text-base
           leading-relaxed
+          shadow-none
+          placeholder:text-muted-foreground/70
+          focus-visible:ring-0
         "
+
       />
 
 
-      <div className="mt-3 flex items-center justify-between">
+      <div
+        className="
+          mt-4
+          flex
+          items-center
+          justify-between
+        "
+      >
 
-        <p className="text-xs text-muted-foreground">
-          Powered by multiple AI perspectives
+        <p
+          className="
+            text-xs
+            text-muted-foreground
+          "
+        >
+          Three AI perspectives · One refined answer
         </p>
 
 
         <Button
+
           type="submit"
+
           size="icon"
-          disabled={loading || !prompt.trim()}
+
+          disabled={
+            loading ||
+            !prompt.trim()
+          }
+
           className="
+            h-11
+            w-11
             rounded-full
-            h-10
-            w-10
+            bg-primary
+            text-primary-foreground
+            transition-transform
+            hover:scale-105
           "
+
         >
 
-          <ArrowUp className="h-5 w-5" />
+          {
+            loading ? (
+
+              <Loader2
+                className="
+                  h-5
+                  w-5
+                  animate-spin
+                "
+              />
+
+            ) : (
+
+              <ArrowUp
+                className="
+                  h-5
+                  w-5
+                "
+              />
+
+            )
+          }
+
 
           <span className="sr-only">
-            {loading
-              ? "Generating answer"
-              : "Submit question"}
+            {
+              loading
+                ? "Generating answer"
+                : "Submit question"
+            }
           </span>
+
 
         </Button>
 
+
       </div>
 
+
     </form>
+
   );
 }

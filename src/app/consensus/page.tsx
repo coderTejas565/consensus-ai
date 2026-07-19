@@ -2,6 +2,7 @@
 
 import { useAnswer } from "@/hooks/use-answer";
 
+import { Navbar } from "@/components/layout/navbar";
 import { PromptInput } from "@/components/prompt/prompt-input";
 import { ConsensusAnswer } from "@/components/response/consensus-answer";
 import { ExpertResponses } from "@/components/response/expert-responses";
@@ -21,6 +22,8 @@ export default function Home() {
   return (
     <main className="min-h-screen">
 
+      <Navbar />
+      
       <section className="mx-auto flex max-w-5xl flex-col gap-12 px-6 py-20">
 
 
@@ -73,8 +76,6 @@ export default function Home() {
             {error}
           </p>
         )}
-
-
 
         {/* Results */}
 

@@ -1,27 +1,49 @@
-import { Brain, Sparkles } from "lucide-react";
+import {
+  Brain,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
 
+const steps = [
+  "Analyzing expert perspectives",
+  "Comparing reasoning patterns",
+  "Synthesizing final answer",
+];
+
+
 export function LoadingState() {
+
   return (
+
     <div
       className="
-        space-y-5
-        rounded-2xl
+        space-y-6
+        rounded-3xl
         border
         bg-card
         p-6
+        shadow-sm
       "
     >
 
-      <div className="flex items-center gap-3">
+      {/* Header */}
+
+      <div
+        className="
+          flex
+          items-center
+          gap-4
+        "
+      >
 
         <div
           className="
             flex
-            h-10
-            w-10
+            h-11
+            w-11
             items-center
             justify-center
             rounded-full
@@ -29,68 +51,184 @@ export function LoadingState() {
             text-primary-foreground
           "
         >
-          <Brain className="h-5 w-5" />
+
+          <Brain
+            className="
+              h-5
+              w-5
+            "
+          />
+
         </div>
 
 
         <div>
 
-          <p className="font-medium">
-            Analyzing perspectives
+          <p
+            className="
+              font-semibold
+            "
+          >
+            Building consensus
           </p>
 
-          <p className="text-sm text-muted-foreground">
-            Comparing multiple AI responses and creating consensus
+
+          <p
+            className="
+              text-sm
+              text-muted-foreground
+            "
+          >
+            Multiple AI perspectives are being analyzed
           </p>
 
         </div>
 
-      </div>
-
-
-
-      <div className="space-y-3">
-
-        <div className="flex items-center gap-3">
-          <Skeleton className="h-4 w-4 rounded-full" />
-          <Skeleton className="h-4 w-40" />
-        </div>
-
-
-        <div className="flex items-center gap-3">
-          <Skeleton className="h-4 w-4 rounded-full" />
-          <Skeleton className="h-4 w-48" />
-        </div>
-
-
-        <div className="flex items-center gap-3">
-          <Skeleton className="h-4 w-4 rounded-full" />
-          <Skeleton className="h-4 w-56" />
-        </div>
 
       </div>
 
 
-      <div className="space-y-2 pt-2">
 
-        <Skeleton className="h-4 w-full" />
+      {/* Processing steps */}
 
-        <Skeleton className="h-4 w-full" />
+      <div
+        className="
+          space-y-3
+        "
+      >
 
-        <Skeleton className="h-4 w-3/4" />
+        {
+          steps.map(
+            (step, index) => (
+
+              <div
+                key={step}
+                className="
+                  flex
+                  items-center
+                  gap-3
+                "
+              >
+
+                <div
+                  className="
+                    flex
+                    h-5
+                    w-5
+                    items-center
+                    justify-center
+                  "
+                >
+
+                  {
+                    index === 2 ? (
+
+                      <Sparkles
+                        className="
+                          h-4
+                          w-4
+                          text-primary
+                        "
+                      />
+
+                    ) : (
+
+                      <CheckCircle2
+                        className="
+                          h-4
+                          w-4
+                          text-muted-foreground
+                        "
+                      />
+
+                    )
+                  }
+
+                </div>
+
+
+                <span
+                  className="
+                    text-sm
+                  "
+                >
+                  {step}
+                </span>
+
+
+              </div>
+
+            )
+          )
+        }
+
 
       </div>
 
 
-      <div className="flex items-center gap-2 text-xs text-muted-foreground">
 
-        <Sparkles className="h-3.5 w-3.5" />
 
-        Synthesizing final answer
+      {/* Answer preview */}
+
+      <div
+        className="
+          space-y-3
+          rounded-xl
+          bg-secondary/30
+          p-4
+        "
+      >
+
+        <Skeleton
+          className="
+            h-4
+            w-full
+          "
+        />
+
+        <Skeleton
+          className="
+            h-4
+            w-full
+          "
+        />
+
+        <Skeleton
+          className="
+            h-4
+            w-3/4
+          "
+        />
+
+
+      </div>
+
+
+
+
+      <div
+        className="
+          flex
+          items-center
+          gap-2
+          text-xs
+          text-muted-foreground
+        "
+      >
+
+        <Sparkles
+          className="
+            h-3.5
+            w-3.5
+          "
+        />
+
+        Creating the final consensus response
 
       </div>
 
 
     </div>
+
   );
 }

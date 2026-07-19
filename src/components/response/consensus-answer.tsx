@@ -7,6 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { Badge } from "@/components/ui/badge";
+
 
 interface ConsensusAnswerProps {
   answer: string;
@@ -20,6 +22,7 @@ export function ConsensusAnswer({
   return (
     <Card
       className="
+        overflow-hidden
         border-primary/20
         bg-card
         shadow-sm
@@ -29,64 +32,118 @@ export function ConsensusAnswer({
       <CardHeader
         className="
           border-b
-          bg-secondary/30
+          bg-secondary/20
+          px-6
+          py-5
         "
       >
 
-        <div className="flex items-center gap-2">
+        <div
+          className="
+            flex
+            items-start
+            justify-between
+            gap-4
+          "
+        >
 
           <div
             className="
               flex
-              h-8
-              w-8
               items-center
-              justify-center
-              rounded-full
-              bg-primary
-              text-primary-foreground
+              gap-3
             "
           >
-            <Sparkles className="h-4 w-4" />
+
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-primary
+                text-primary-foreground
+              "
+            >
+
+              <Sparkles
+                className="
+                  h-5
+                  w-5
+                "
+              />
+
+            </div>
+
+
+            <div>
+
+              <CardTitle
+                className="
+                  text-xl
+                  font-semibold
+                "
+              >
+                Consensus Answer
+              </CardTitle>
+
+
+              <p
+                className="
+                  mt-1
+                  text-sm
+                  text-muted-foreground
+                "
+              >
+                Synthesized from multiple AI perspectives
+              </p>
+
+            </div>
+
           </div>
 
 
-          <div>
+          <Badge
+            variant="secondary"
+            className="
+              hidden
+              sm:flex
+            "
+          >
+            Final synthesis
+          </Badge>
 
-            <CardTitle className="text-lg">
-              Consensus Answer
-            </CardTitle>
-
-
-            <p className="text-sm text-muted-foreground">
-              Synthesized from multiple AI perspectives
-            </p>
-
-          </div>
 
         </div>
 
       </CardHeader>
 
 
+
       <CardContent
         className="
-          pt-6
+          px-6
+          py-7
         "
       >
 
         <p
           className="
             whitespace-pre-wrap
-            text-base
+            text-[15px]
             leading-8
-            text-foreground
+            tracking-wide
           "
         >
           {answer}
         </p>
 
+
       </CardContent>
+
 
     </Card>
   );
