@@ -2,10 +2,7 @@ import { retry } from "@/lib/retry";
 import { AppError } from "@/lib/errors";
 
 export abstract class BaseProvider {
-  protected async execute<T>(
-    operation: () => Promise<T>,
-    providerName: string
-  ): Promise<T> {
+  protected async execute<T>(operation: () => Promise<T>, providerName: string): Promise<T> {
     const startTime = Date.now();
 
     try {
@@ -16,10 +13,7 @@ export abstract class BaseProvider {
 
       return result;
     } catch (error) {
-      throw new AppError(
-        `${providerName} provider failed`,
-        error
-      );
+      throw new AppError(`${providerName} provider failed`, error);
     }
   }
 }

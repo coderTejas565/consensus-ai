@@ -1,23 +1,18 @@
 import type { ExpertResponse } from "@/types/ai";
-export function buildEvaluatorPrompt(
- question:string,
- responses:ExpertResponse[]
-){
-
-const formattedResponses = responses
-.map(
-(response)=>`
+export function buildEvaluatorPrompt(question: string, responses: ExpertResponse[]) {
+  const formattedResponses = responses
+    .map(
+      (response) => `
 
 ${response.role.toUpperCase()}:
 
 ${response.answer}
 
-`
-)
-.join("\n");
+`,
+    )
+    .join("\n");
 
-
-return `
+  return `
 You are an expert AI evaluator.
 
 User Question:
@@ -39,5 +34,4 @@ Instructions:
 Return only the final answer.
 
 `.trim();
-
 }

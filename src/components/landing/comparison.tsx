@@ -17,7 +17,6 @@ const withConsensus = [
   "Higher confidence in decisions",
 ];
 
-
 export function Comparison() {
   return (
     <section
@@ -32,22 +31,21 @@ export function Comparison() {
           max-w-7xl
         "
       >
-
         {/* Heading */}
         <motion.div
           initial={{
-            opacity:0,
-            y:20,
+            opacity: 0,
+            y: 20,
           }}
           whileInView={{
-            opacity:1,
-            y:0,
+            opacity: 1,
+            y: 0,
           }}
           viewport={{
-            once:true,
+            once: true,
           }}
           transition={{
-            duration:0.6,
+            duration: 0.6,
           }}
           className="
             mx-auto
@@ -55,7 +53,6 @@ export function Comparison() {
             text-center
           "
         >
-
           <h2
             className="
               font-heading
@@ -68,7 +65,6 @@ export function Comparison() {
             Stop choosing between AI answers
           </h2>
 
-
           <p
             className="
               mt-4
@@ -77,13 +73,9 @@ export function Comparison() {
               text-foreground/60
             "
           >
-            Compare multiple perspectives and get
-            a clearer answer from one place.
+            Compare multiple perspectives and get a clearer answer from one place.
           </p>
-
         </motion.div>
-
-
 
         {/* Cards */}
         <div
@@ -94,8 +86,6 @@ export function Comparison() {
             lg:grid-cols-2
           "
         >
-
-
           {/* Without */}
           <ComparisonCard
             title="Without Consensus"
@@ -104,7 +94,6 @@ export function Comparison() {
             type="negative"
           />
 
-
           {/* With */}
           <ComparisonCard
             title="With Consensus"
@@ -112,15 +101,11 @@ export function Comparison() {
             items={withConsensus}
             type="positive"
           />
-
         </div>
-
       </div>
     </section>
   );
 }
-
-
 
 function ComparisonCard({
   title,
@@ -128,33 +113,31 @@ function ComparisonCard({
   items,
   type,
 }: {
-  title:string;
-  description:string;
-  items:string[];
-  type:"positive"|"negative";
+  title: string;
+  description: string;
+  items: string[];
+  type: "positive" | "negative";
 }) {
-
   const positive = type === "positive";
-
 
   return (
     <motion.div
       initial={{
-        opacity:0,
-        y:30,
+        opacity: 0,
+        y: 30,
       }}
       whileInView={{
-        opacity:1,
-        y:0,
+        opacity: 1,
+        y: 0,
       }}
       viewport={{
-        once:true,
+        once: true,
       }}
       transition={{
-        duration:0.6,
+        duration: 0.6,
       }}
       whileHover={{
-        y:-4,
+        y: -4,
       }}
       className={`
         rounded-3xl
@@ -163,15 +146,13 @@ function ComparisonCard({
         duration-300
         ${
           positive
-          ?
-          `
+            ? `
           bg-[#034F46]
           text-[#FFFFEB]
           shadow-xl
           shadow-black/10
           `
-          :
-          `
+            : `
           border
           border-border/50
           bg-[#FFFFEB]
@@ -182,7 +163,6 @@ function ComparisonCard({
         }
       `}
     >
-
       <h3
         className="
           font-heading
@@ -193,42 +173,32 @@ function ComparisonCard({
         {title}
       </h3>
 
-
       <p
         className={`
           mt-3
-          ${
-            positive
-            ?
-            "text-[#FFFFEB]/70"
-            :
-            "text-[#034F46]/70"
-          }
+          ${positive ? "text-[#FFFFEB]/70" : "text-[#034F46]/70"}
         `}
       >
         {description}
       </p>
 
-
-
       <div className="mt-8 space-y-5">
-
-        {items.map((item,index)=>(
+        {items.map((item, index) => (
           <motion.div
             key={item}
             initial={{
-              opacity:0,
-              x:-10,
+              opacity: 0,
+              x: -10,
             }}
             whileInView={{
-              opacity:1,
-              x:0,
+              opacity: 1,
+              x: 0,
             }}
             viewport={{
-              once:true,
+              once: true,
             }}
             transition={{
-              delay:index * 0.08,
+              delay: index * 0.08,
             }}
             className="
               flex
@@ -236,7 +206,6 @@ function ComparisonCard({
               gap-3
             "
           >
-
             <div
               className={`
                 mt-0.5
@@ -247,46 +216,28 @@ function ComparisonCard({
                 items-center
                 justify-center
                 rounded-full
-                ${
-                  positive
-                  ?
-                  "bg-[#FFFFEB]/10"
-                  :
-                  "bg-[#034F46]/10"
-                }
+                ${positive ? "bg-[#FFFFEB]/10" : "bg-[#034F46]/10"}
               `}
             >
-
               {positive ? (
-                <Check className="h-3.5 w-3.5"/>
+                <Check className="h-3.5 w-3.5" />
               ) : (
-                <X className="h-3.5 w-3.5 text-[#034F46]"/>
+                <X className="h-3.5 w-3.5 text-[#034F46]" />
               )}
-
             </div>
-
 
             <p
               className={`
                 text-base
                 leading-relaxed
-                ${
-                  positive
-                  ?
-                  "text-[#FFFFEB]/90"
-                  :
-                  "text-[#034F46]/80"
-                }
+                ${positive ? "text-[#FFFFEB]/90" : "text-[#034F46]/80"}
               `}
             >
               {item}
             </p>
-
           </motion.div>
         ))}
-
       </div>
-
     </motion.div>
   );
 }

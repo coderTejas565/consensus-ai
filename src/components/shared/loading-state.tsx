@@ -1,8 +1,4 @@
-import {
-  BrainCircuit,
-  LoaderCircle,
-  GitMerge,
-} from "lucide-react";
+import { BrainCircuit, LoaderCircle, GitMerge } from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -62,8 +58,7 @@ export function LoadingState() {
               text-muted-foreground
             "
           >
-            Multiple AI experts are reasoning independently before producing one
-            refined answer.
+            Multiple AI experts are reasoning independently before producing one refined answer.
           </p>
         </div>
       </div>
@@ -72,10 +67,7 @@ export function LoadingState() {
 
       <div className="space-y-5">
         {steps.map((step, index) => (
-          <div
-            key={step}
-            className="flex items-start gap-4"
-          >
+          <div key={step} className="flex items-start gap-4">
             <div className="flex flex-col items-center">
               <div
                 className="
@@ -168,9 +160,7 @@ export function LoadingState() {
       >
         <GitMerge className="h-3.5 w-3.5 text-primary" />
 
-        <span className="font-medium">
-          Crafting your consensus answer...
-        </span>
+        <span className="font-medium">Crafting your consensus answer...</span>
       </div>
     </div>
   );

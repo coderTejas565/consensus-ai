@@ -4,25 +4,15 @@ import { buildEvaluatorPrompt } from "@/prompts/evaluator.prompt";
 import type { ExpertResponse } from "@/types/ai";
 
 export class EvaluatorService {
+  async evaluate(question: string, responses: ExpertResponse[]): Promise<string> {
+    const model = geminiClient.getGenerativeModel({
+      model: MODELS.evaluator,
+    });
 
-async evaluate(
- question:string,
- responses:ExpertResponse[]
-):Promise<string>{
+    const prompt = buildEvaluatorPrompt(question, responses);
 
- const model = geminiClient.getGenerativeModel({
-   model:MODELS.evaluator
- });
+    const result = await model.generateContent(prompt);
 
- const prompt = buildEvaluatorPrompt(
-    question,
-    responses
- );
-
- const result = await model.generateContent(prompt);
-
- return result.response.text();
-
-}
-
+    return result.response.text();
+  }
 }

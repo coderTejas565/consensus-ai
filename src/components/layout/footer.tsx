@@ -5,26 +5,24 @@ import { GitMerge } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { motion } from "framer-motion";
 
-
 export function Footer() {
   return (
     <footer className="px-4 pb-8 pt-18">
-
       <motion.div
         initial={{
-          opacity:0,
-          y:30,
+          opacity: 0,
+          y: 30,
         }}
         whileInView={{
-          opacity:1,
-          y:0,
+          opacity: 1,
+          y: 0,
         }}
         viewport={{
-          once:true,
+          once: true,
         }}
         transition={{
-          duration:0.7,
-          ease:"easeOut",
+          duration: 0.7,
+          ease: "easeOut",
         }}
         className="
           mx-auto
@@ -40,7 +38,6 @@ export function Footer() {
           md:p-10
         "
       >
-
         <div
           className="
             flex
@@ -51,12 +48,9 @@ export function Footer() {
             md:justify-between
           "
         >
-
-
           {/* Brand */}
 
           <div className="space-y-5">
-
             <Link
               href="/"
               className="
@@ -66,14 +60,13 @@ export function Footer() {
                 gap-4
               "
             >
-
               <motion.div
                 whileHover={{
-                  rotate:8,
-                  y:-2,
+                  rotate: 8,
+                  y: -2,
                 }}
                 transition={{
-                  duration:0.3,
+                  duration: 0.3,
                 }}
                 className="
                   flex
@@ -88,20 +81,15 @@ export function Footer() {
                   shadow-primary/20
                 "
               >
-
                 <GitMerge
                   className="
                     h-5
                     w-5
                   "
                 />
-
               </motion.div>
 
-
-
               <div>
-
                 <h2
                   className="
                     font-heading
@@ -113,7 +101,6 @@ export function Footer() {
                   Consensus AI
                 </h2>
 
-
                 <p
                   className="
                     text-sm
@@ -122,13 +109,8 @@ export function Footer() {
                 >
                   Multiple AI perspectives
                 </p>
-
               </div>
-
-
             </Link>
-
-
 
             <p
               className="
@@ -138,14 +120,9 @@ export function Footer() {
                 text-muted-foreground
               "
             >
-              One question. Multiple AI experts.
-              One refined answer.
+              One question. Multiple AI experts. One refined answer.
             </p>
-
           </div>
-
-
-
 
           {/* Right */}
 
@@ -158,12 +135,9 @@ export function Footer() {
               sm:items-center
             "
           >
-
-
             {/* Stack */}
 
             <div className="space-y-3">
-
               <p
                 className="
                   text-xs
@@ -176,23 +150,18 @@ export function Footer() {
                 Built With
               </p>
 
-
-              <div className="
+              <div
+                className="
                 flex
                 flex-wrap
                 gap-2
-              ">
-
-                {[
-                  "Next.js",
-                  "TypeScript",
-                  "Tailwind",
-                  "AI SDK",
-                ].map((item)=>(
+              "
+              >
+                {["Next.js", "TypeScript", "Tailwind", "AI SDK"].map((item) => (
                   <motion.span
                     key={item}
                     whileHover={{
-                      y:-2,
+                      y: -2,
                     }}
                     className="
                       rounded-full
@@ -209,23 +178,16 @@ export function Footer() {
                     {item}
                   </motion.span>
                 ))}
-
               </div>
-
             </div>
-
-
-
-
 
             {/* Github */}
 
             <motion.div
               whileHover={{
-                y:-3,
+                y: -3,
               }}
             >
-
               <Link
                 href="https://github.com/coderTejas565/consensus-ai.git"
                 target="_blank"
@@ -245,23 +207,12 @@ export function Footer() {
                   hover:shadow-lg
                 "
               >
-
                 <SiGithub className="h-4 w-4" />
-
                 GitHub
-
               </Link>
-
             </motion.div>
-
-
           </div>
-
         </div>
-
-
-
-
 
         {/* Bottom */}
 
@@ -275,13 +226,9 @@ export function Footer() {
             text-muted-foreground
           "
         >
-          © {new Date().getFullYear()} Consensus AI.
-          Built with curiosity and AI.
+          © {new Date().getFullYear()} Consensus AI. Built with curiosity and AI.
         </div>
-
-
       </motion.div>
-
     </footer>
   );
 }

@@ -28,14 +28,12 @@ export function Hero() {
           </div>
 
           <h1 className="text-balance font-heading text-6xl font-bold leading-[0.9] tracking-[-0.04em] md:text-7xl lg:text-[84px]">
-            Stop choosing between AI.{" "}
-            <span className="text-primary">Get one trusted answer.</span>
+            Stop choosing between AI. <span className="text-primary">Get one trusted answer.</span>
           </h1>
 
           <p className="max-w-xl text-lg leading-relaxed text-foreground/60 md:text-xl">
-            Consensus AI asks multiple AI experts, compares their
-            perspectives, and combines them into one refined answer you can
-            trust.
+            Consensus AI asks multiple AI experts, compares their perspectives, and combines them
+            into one refined answer you can trust.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row">
@@ -44,7 +42,10 @@ export function Hero() {
               className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               Try Consensus AI
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
             </Link>
 
             <Link

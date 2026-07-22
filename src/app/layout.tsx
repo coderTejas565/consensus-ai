@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 
-import {
-  Geist,
-  Geist_Mono,
-  Manrope,
-} from "next/font/google";
+import { Geist, Geist_Mono, Manrope } from "next/font/google";
 
 import "./globals.css";
 
@@ -27,8 +23,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Consensus AI",
-  description:
-    "Generate better answers by combining multiple AI perspectives.",
+  description: "Generate better answers by combining multiple AI perspectives.",
 };
 
 export default function RootLayout({
@@ -40,12 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn(
-        "h-full",
-        geistSans.variable,
-        geistMono.variable,
-        manrope.variable
-      )}
+      className={cn("h-full", geistSans.variable, geistMono.variable, manrope.variable)}
     >
       <body
         className="
@@ -56,7 +46,7 @@ export default function RootLayout({
           antialiased
         "
       >
-          {children}
+        {children}
       </body>
     </html>
   );

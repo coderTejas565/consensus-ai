@@ -6,9 +6,7 @@ type NavbarProps = {
   variant?: "landing" | "app";
 };
 
-export function Navbar({
-  variant = "landing",
-}: NavbarProps) {
+export function Navbar({ variant = "landing" }: NavbarProps) {
   return (
     <header
       className="
@@ -54,7 +52,6 @@ export function Navbar({
           "
         />
 
-
         {/* Logo */}
         <Link
           href="/"
@@ -99,7 +96,6 @@ export function Navbar({
             <GitMerge className="relative h-5 w-5" />
           </div>
 
-
           <div className="leading-none">
             <h1
               className="
@@ -128,10 +124,8 @@ export function Navbar({
           </div>
         </Link>
 
-
         {/* Actions */}
         <div className="flex items-center gap-3">
-
           {variant === "landing" && (
             <>
               {/* Github */}
@@ -157,10 +151,8 @@ export function Navbar({
                 "
               >
                 <SiGithub className="h-4 w-4" />
-
                 GitHub
               </Link>
-
 
               {/* Try Consensus */}
               <Link
@@ -184,7 +176,6 @@ export function Navbar({
               </Link>
             </>
           )}
-
         </div>
       </div>
     </header>

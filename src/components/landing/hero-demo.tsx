@@ -47,12 +47,12 @@ export function HeroDemo() {
       </motion.div>
 
       {/* Connector: question → experts */}
-      <svg
-        className="mx-auto block h-12 w-px overflow-visible"
-        aria-hidden="true"
-      >
+      <svg className="mx-auto block h-12 w-px overflow-visible" aria-hidden="true">
         <motion.line
-          x1="0.5" y1="0" x2="0.5" y2="32"
+          x1="0.5"
+          y1="0"
+          x2="0.5"
+          y2="32"
           className="stroke-border"
           strokeWidth="1.5"
           initial={reduceMotion ? undefined : { pathLength: 0 }}
@@ -81,20 +81,24 @@ export function HeroDemo() {
             <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
               <BrainCircuit className="h-4 w-4" aria-hidden="true" />
             </div>
-            <p className="
+            <p
+              className="
   font-heading
   text-sm
   font-semibold
   tracking-tight
-">
+"
+            >
               {expert.label}
             </p>
-            <p className="
+            <p
+              className="
   mt-2
   text-xs
   leading-relaxed
   text-muted-foreground
-">
+"
+            >
               {expert.answer}
             </p>
           </motion.div>
@@ -133,15 +137,13 @@ export function HeroDemo() {
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
             <GitMerge className="h-4 w-4" aria-hidden="true" />
           </div>
-          <p className="font-heading text-xl font-semibold tracking-tight">
-            Consensus answer
-          </p>
+          <p className="font-heading text-xl font-semibold tracking-tight">Consensus answer</p>
         </div>
 
         <div className="relative px-5 py-4">
           <p className="text-base leading-relaxed text-foreground/80">
-            A reliable AI system separates model providers, business logic,
-            and evaluation layers while keeping the architecture flexible.
+            A reliable AI system separates model providers, business logic, and evaluation layers
+            while keeping the architecture flexible.
           </p>
         </div>
       </motion.div>

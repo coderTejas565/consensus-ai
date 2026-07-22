@@ -42,7 +42,6 @@ export function CTA() {
           md:p-20
         "
       >
-
         {/* Ambient glow */}
         <div
           className="
@@ -58,7 +57,6 @@ export function CTA() {
             blur-3xl
           "
         />
-
 
         {/* Moving glass reflection */}
         <motion.div
@@ -83,7 +81,6 @@ export function CTA() {
           "
         />
 
-
         <div
           className="
             relative
@@ -91,7 +88,6 @@ export function CTA() {
             max-w-3xl
           "
         >
-
           <h2
             className="
               font-heading
@@ -103,10 +99,8 @@ export function CTA() {
               md:text-6xl
             "
           >
-            Ready to compare AI
-            instead of choosing one?
+            Ready to compare AI instead of choosing one?
           </h2>
-
 
           <p
             className="
@@ -119,11 +113,8 @@ export function CTA() {
               md:text-xl
             "
           >
-            Ask one question, explore multiple AI
-            perspectives, and get one refined answer.
+            Ask one question, explore multiple AI perspectives, and get one refined answer.
           </p>
-
-
 
           <div
             className="
@@ -132,7 +123,6 @@ export function CTA() {
               justify-center
             "
           >
-
             <Link
               href="/consensus"
               className="
@@ -155,8 +145,6 @@ export function CTA() {
               "
             >
               Try Consensus AI
-
-
               <ArrowRight
                 className="
                   h-5
@@ -166,13 +154,9 @@ export function CTA() {
                   group-hover:translate-x-1
                 "
               />
-
             </Link>
-
           </div>
-
         </div>
-
       </motion.div>
     </section>
   );

@@ -1,6 +1,5 @@
 import { GitMerge } from "lucide-react";
 
-
 export function ConsensusEmpty() {
   return (
     <div
@@ -49,8 +48,7 @@ export function ConsensusEmpty() {
           text-muted-foreground
         "
       >
-        Compare multiple AI perspectives and receive one refined,
-        well-reasoned answer.
+        Compare multiple AI perspectives and receive one refined, well-reasoned answer.
       </p>
     </div>
   );

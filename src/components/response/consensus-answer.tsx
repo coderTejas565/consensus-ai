@@ -1,19 +1,12 @@
 import { GitMerge } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ConsensusAnswerProps {
   answer: string;
 }
 
-export function ConsensusAnswer({
-  answer,
-}: ConsensusAnswerProps) {
+export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
   return (
     <Card
       className="
@@ -123,9 +116,7 @@ export function ConsensusAnswer({
             tracking-tight
           "
         >
-          <p className="whitespace-pre-wrap">
-            {answer}
-          </p>
+          <p className="whitespace-pre-wrap">{answer}</p>
         </div>
       </CardContent>
     </Card>

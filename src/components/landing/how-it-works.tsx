@@ -1,20 +1,14 @@
 "use client";
 
-import {
-  MessageSquare,
-  Brain,
-  GitMerge,
-} from "lucide-react";
+import { MessageSquare, Brain, GitMerge } from "lucide-react";
 
 import { motion } from "framer-motion";
-
 
 const steps = [
   {
     icon: MessageSquare,
     title: "Ask",
-    description:
-      "Submit one question and let Consensus AI understand what you need.",
+    description: "Submit one question and let Consensus AI understand what you need.",
   },
   {
     icon: Brain,
@@ -25,11 +19,9 @@ const steps = [
   {
     icon: GitMerge,
     title: "Consensus",
-    description:
-      "An evaluation layer combines the responses into one refined and reliable answer.",
+    description: "An evaluation layer combines the responses into one refined and reliable answer.",
   },
 ];
-
 
 export function HowItWorks() {
   return (
@@ -39,29 +31,27 @@ export function HowItWorks() {
         py-24
       "
     >
-
       <div
         className="
           mx-auto
           max-w-7xl
         "
       >
-
         {/* Heading */}
         <motion.div
           initial={{
-            opacity:0,
-            y:20,
+            opacity: 0,
+            y: 20,
           }}
           whileInView={{
-            opacity:1,
-            y:0,
+            opacity: 1,
+            y: 0,
           }}
           viewport={{
-            once:true,
+            once: true,
           }}
           transition={{
-            duration:0.6,
+            duration: 0.6,
           }}
           className="
             mx-auto
@@ -69,7 +59,6 @@ export function HowItWorks() {
             text-center
           "
         >
-
           <h2
             className="
               font-heading
@@ -81,7 +70,6 @@ export function HowItWorks() {
             How Consensus AI works
           </h2>
 
-
           <p
             className="
               mt-4
@@ -90,13 +78,10 @@ export function HowItWorks() {
               text-foreground/60
             "
           >
-            One question goes through multiple AI perspectives
-            before becoming a single trusted answer.
+            One question goes through multiple AI perspectives before becoming a single trusted
+            answer.
           </p>
-
         </motion.div>
-
-
 
         {/* Cards */}
         <div
@@ -107,39 +92,35 @@ export function HowItWorks() {
             md:grid-cols-3
           "
         >
-
-          {steps.map((step,index)=>{
-
+          {steps.map((step, index) => {
             const Icon = step.icon;
 
-
             return (
-
               <motion.div
                 key={step.title}
 
                 initial={{
-                  opacity:0,
-                  y:30,
+                  opacity: 0,
+                  y: 30,
                 }}
 
                 whileInView={{
-                  opacity:1,
-                  y:0,
+                  opacity: 1,
+                  y: 0,
                 }}
 
                 viewport={{
-                  once:true,
+                  once: true,
                 }}
 
                 transition={{
-                  delay:index * 0.15,
-                  duration:0.6,
-                  ease:"easeOut",
+                  delay: index * 0.15,
+                  duration: 0.6,
+                  ease: "easeOut",
                 }}
 
                 whileHover={{
-                  y:-6,
+                  y: -6,
                 }}
 
                 className="
@@ -157,8 +138,6 @@ export function HowItWorks() {
                   hover:shadow-xl
                 "
               >
-
-
                 {/* Number */}
                 <span
                   className="
@@ -170,20 +149,17 @@ export function HowItWorks() {
                     text-[#034F46]/30
                   "
                 >
-                  0{index+1}
+                  0{index + 1}
                 </span>
-
-
 
                 {/* Icon */}
                 <motion.div
-
                   whileHover={{
-                    scale:1.08,
+                    scale: 1.08,
                   }}
 
                   transition={{
-                    duration:0.25,
+                    duration: 0.25,
                   }}
 
                   className="
@@ -199,18 +175,13 @@ export function HowItWorks() {
                     shadow-black/10
                   "
                 >
-
                   <Icon
                     className="
                       h-6
                       w-6
                     "
                   />
-
                 </motion.div>
-
-
-
 
                 {/* Content */}
                 <div
@@ -219,7 +190,6 @@ export function HowItWorks() {
                     space-y-3
                   "
                 >
-
                   <h3
                     className="
                       font-heading
@@ -231,7 +201,6 @@ export function HowItWorks() {
                     {step.title}
                   </h3>
 
-
                   <p
                     className="
                       text-base
@@ -241,19 +210,12 @@ export function HowItWorks() {
                   >
                     {step.description}
                   </p>
-
                 </div>
-
-
               </motion.div>
-
             );
           })}
-
         </div>
-
       </div>
-
     </section>
   );
 }

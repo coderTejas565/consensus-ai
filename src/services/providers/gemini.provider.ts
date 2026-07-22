@@ -3,15 +3,12 @@ import { BaseProvider } from "./base.provider";
 import type { AIProvider } from "./provider.interface";
 import type { ModelRole } from "@/types/ai";
 
-export class GeminiProvider
-  extends BaseProvider
-  implements AIProvider
-{
+export class GeminiProvider extends BaseProvider implements AIProvider {
   private readonly providerName = "Gemini";
 
   constructor(
     public readonly role: ModelRole,
-    private readonly modelName: string
+    private readonly modelName: string,
   ) {
     super();
   }

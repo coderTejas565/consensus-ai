@@ -15,27 +15,23 @@ export async function POST(request: Request) {
 
     const responses = await orchestrator.generateResponses(prompt);
 
-    const finalAnswer = await evaluator.evaluate(
-      prompt,
-      responses
-    );
+    const finalAnswer = await evaluator.evaluate(prompt, responses);
 
     return NextResponse.json({
-  question: prompt,
-  expertResponses: responses,
-  finalAnswer,
-});
+      question: prompt,
+      expertResponses: responses,
+      finalAnswer,
+    });
   } catch (error) {
     console.error(error);
 
     return NextResponse.json(
-  {
-    message:
-      "The AI service has reached its daily free quota. Please try again later.",
-  },
-  {
-    status: 429,
-  }
-);
+      {
+        message: "The AI service has reached its daily free quota. Please try again later.",
+      },
+      {
+        status: 429,
+      },
+    );
   }
 }

@@ -1,56 +1,41 @@
 "use client";
 
-import {
-  Users,
-  Eye,
-  Layers,
-  Zap,
-  Sparkles,
-  Plug,
-} from "lucide-react";
+import { Users, Eye, Layers, Zap, Sparkles, Plug } from "lucide-react";
 
 import { motion } from "framer-motion";
-
 
 const features = [
   {
     icon: Users,
     title: "Multiple AI Experts",
-    description:
-      "Query multiple AI models simultaneously to explore different perspectives.",
+    description: "Query multiple AI models simultaneously to explore different perspectives.",
   },
   {
     icon: Eye,
     title: "Transparent Reasoning",
-    description:
-      "See individual expert responses before they are combined into a final answer.",
+    description: "See individual expert responses before they are combined into a final answer.",
   },
   {
     icon: Layers,
     title: "Consensus Engine",
-    description:
-      "An evaluation layer analyzes responses and creates one refined answer.",
+    description: "An evaluation layer analyzes responses and creates one refined answer.",
   },
   {
     icon: Zap,
     title: "Fast Processing",
-    description:
-      "Parallel execution allows multiple AI opinions without unnecessary delays.",
+    description: "Parallel execution allows multiple AI opinions without unnecessary delays.",
   },
   {
     icon: Sparkles,
     title: "Minimal Interface",
-    description:
-      "A focused experience designed around asking questions and getting clarity.",
+    description: "A focused experience designed around asking questions and getting clarity.",
   },
   {
     icon: Plug,
     title: "Future Ready",
-    description:
-      "Easily extend the system with new models and AI providers.",
+    description: "Easily extend the system with new models and AI providers.",
   },
 ];
-
 
 export function Features() {
   return (
@@ -60,34 +45,30 @@ export function Features() {
         py-18
       "
     >
-
       <div
         className="
           mx-auto
           max-w-7xl
         "
       >
-
-
         {/* Heading */}
         <motion.div
           initial={{
-            opacity:0,
-            y:20
+            opacity: 0,
+            y: 20,
           }}
           whileInView={{
-            opacity:1,
-            y:0
+            opacity: 1,
+            y: 0,
           }}
           viewport={{
-            once:true
+            once: true,
           }}
           transition={{
-            duration:0.6
+            duration: 0.6,
           }}
           className="max-w-2xl"
         >
-
           <h2
             className="
               font-heading
@@ -100,7 +81,6 @@ export function Features() {
             Built for better AI decisions
           </h2>
 
-
           <p
             className="
               mt-5
@@ -109,13 +89,10 @@ export function Features() {
               text-[#034F46]/60
             "
           >
-            Combine multiple perspectives, compare reasoning,
-            and move from uncertainty to confidence.
+            Combine multiple perspectives, compare reasoning, and move from uncertainty to
+            confidence.
           </p>
-
         </motion.div>
-
-
 
         {/* Cards */}
         <div
@@ -127,39 +104,36 @@ export function Features() {
             lg:grid-cols-3
           "
         >
-
-          {features.map((feature,index)=>{
-
+          {features.map((feature, index) => {
             const Icon = feature.icon;
 
             return (
-
               <motion.div
                 key={feature.title}
 
                 initial={{
-                  opacity:0,
-                  y:30
+                  opacity: 0,
+                  y: 30,
                 }}
 
                 whileInView={{
-                  opacity:1,
-                  y:0
+                  opacity: 1,
+                  y: 0,
                 }}
 
                 viewport={{
-                  once:true,
-                  margin:"-100px"
+                  once: true,
+                  margin: "-100px",
                 }}
 
                 transition={{
-                  delay:index*0.08,
-                  duration:0.5,
-                  ease:"easeOut"
+                  delay: index * 0.08,
+                  duration: 0.5,
+                  ease: "easeOut",
                 }}
 
                 whileHover={{
-                  y:-6
+                  y: -6,
                 }}
 
                 className="
@@ -178,8 +152,6 @@ export function Features() {
                   hover:shadow-xl
                 "
               >
-
-
                 {/* Hover glow */}
                 <div
                   className="
@@ -197,14 +169,12 @@ export function Features() {
                   "
                 />
 
-
-
                 {/* Icon */}
 
                 <motion.div
                   whileHover={{
-                    rotate:5,
-                    scale:1.05
+                    rotate: 5,
+                    scale: 1.05,
                   }}
                   className="
                     relative
@@ -220,13 +190,8 @@ export function Features() {
                     shadow-[#034F46]/20
                   "
                 >
-
-                  <Icon className="h-5 w-5"/>
-
+                  <Icon className="h-5 w-5" />
                 </motion.div>
-
-
-
 
                 {/* Content */}
 
@@ -237,7 +202,6 @@ export function Features() {
                     space-y-3
                   "
                 >
-
                   <h3
                     className="
                       font-heading
@@ -250,7 +214,6 @@ export function Features() {
                     {feature.title}
                   </h3>
 
-
                   <p
                     className="
                       text-base
@@ -260,21 +223,12 @@ export function Features() {
                   >
                     {feature.description}
                   </p>
-
                 </div>
-
-
               </motion.div>
-
             );
-
           })}
-
         </div>
-
-
       </div>
-
     </section>
   );
 }

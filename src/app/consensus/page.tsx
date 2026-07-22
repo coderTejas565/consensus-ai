@@ -9,22 +9,12 @@ import { ConsensusAnswer } from "@/components/response/consensus-answer";
 import { ExpertResponses } from "@/components/response/expert-responses";
 import { LoadingState } from "@/components/shared/loading-state";
 
-
 export default function Home() {
-
-  const {
-    ask,
-    data,
-    loading,
-    error,
-  } = useAnswer();
-
+  const { ask, data, loading, error } = useAnswer();
 
   return (
     <main className="min-h-screen">
-
       <Navbar variant="app" />
-
 
       <section
         className="
@@ -37,13 +27,7 @@ export default function Home() {
           py-16
         "
       >
-
-
-        {!data && !loading && (
-          <ConsensusEmpty />
-        )}
-
-
+        {!data && !loading && <ConsensusEmpty />}
 
         <div
           className="
@@ -52,19 +36,10 @@ export default function Home() {
             max-w-3xl
           "
         >
-
-          <PromptInput
-            onSubmit={ask}
-            loading={loading}
-          />
-
+          <PromptInput onSubmit={ask} loading={loading} />
         </div>
 
-
-
-
         {loading && (
-
           <div
             className="
               mx-auto
@@ -74,15 +49,9 @@ export default function Home() {
           >
             <LoadingState />
           </div>
-
         )}
 
-
-
-
-
         {error && (
-
           <p
             className="
               text-center
@@ -92,39 +61,20 @@ export default function Home() {
           >
             {error}
           </p>
-
         )}
 
-
-
-
-
         {data && (
-
           <section
             className="
               space-y-8
             "
           >
+            <ConsensusAnswer answer={data.finalAnswer} />
 
-            <ConsensusAnswer
-              answer={data.finalAnswer}
-            />
-
-
-            <ExpertResponses
-              responses={data.expertResponses}
-            />
-
-
+            <ExpertResponses responses={data.expertResponses} />
           </section>
-
         )}
-
-
       </section>
-
-
     </main>
   );
 }

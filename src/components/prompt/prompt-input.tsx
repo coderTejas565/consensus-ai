@@ -60,11 +60,7 @@ export function PromptInput({ onSubmit, loading = false }: PromptInputProps) {
           aria-label={loading ? "Generating answer" : "Submit question"}
           className="h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-40 disabled:hover:scale-100 disabled:shadow-none"
         >
-          {loading ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
-          ) : (
-            <ArrowUp className="h-5 w-5" />
-          )}
+          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <ArrowUp className="h-5 w-5" />}
         </Button>
       </div>
     </form>

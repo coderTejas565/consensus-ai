@@ -1,26 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import {
-  BrainCircuit,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { BrainCircuit, ChevronDown, ChevronUp } from "lucide-react";
 
 import type { ExpertResponse } from "@/types/ai";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ExpertResponsesProps {
   responses: ExpertResponse[];
@@ -33,17 +20,11 @@ function formatRole(role: string) {
     .trim();
 }
 
-export function ExpertResponses({
-  responses,
-}: ExpertResponsesProps) {
+export function ExpertResponses({ responses }: ExpertResponsesProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Collapsible
-      open={open}
-      onOpenChange={setOpen}
-      className="space-y-5"
-    >
+    <Collapsible open={open} onOpenChange={setOpen} className="space-y-5">
       <CollapsibleTrigger
         className="
           group
@@ -178,9 +159,7 @@ export function ExpertResponses({
                   text-muted-foreground
                 "
               >
-                <p className="whitespace-pre-wrap">
-                  {response.answer}
-                </p>
+                <p className="whitespace-pre-wrap">{response.answer}</p>
               </div>
             </CardContent>
           </Card>

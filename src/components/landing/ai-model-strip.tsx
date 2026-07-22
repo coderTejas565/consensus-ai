@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 
 export function AIModelStrip() {
-  const models = [
-    "OpenAI",
-    "Claude",
-    "Gemini",
-    "Future Models",
-  ];
+  const models = ["OpenAI", "Claude", "Gemini", "Future Models"];
 
   return (
     <section
@@ -58,7 +53,6 @@ export function AIModelStrip() {
             md:justify-between
           "
         >
-
           {/* Glass reflection */}
           <div
             className="
@@ -72,7 +66,6 @@ export function AIModelStrip() {
               to-transparent
             "
           />
-
 
           {/* Label */}
           <div
@@ -105,8 +98,6 @@ export function AIModelStrip() {
             </p>
           </div>
 
-
-
           {/* Models */}
           <div
             className="
@@ -117,7 +108,6 @@ export function AIModelStrip() {
               gap-3
             "
           >
-
             {models.map((model, index) => (
               <motion.div
                 key={model}
@@ -158,10 +148,7 @@ export function AIModelStrip() {
                 {model}
               </motion.div>
             ))}
-
           </div>
-
-
         </motion.div>
       </div>
     </section>
