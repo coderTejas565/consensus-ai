@@ -1,12 +1,24 @@
 import { GitMerge } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { MarkdownRenderer } from "@/components/shared/markdown-renderer";
+
 
 interface ConsensusAnswerProps {
   answer: string;
 }
 
-export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
+
+export function ConsensusAnswer({
+  answer,
+}: ConsensusAnswerProps) {
+
   return (
     <Card
       className="
@@ -14,48 +26,53 @@ export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
         rounded-3xl
         border
         border-border/50
-        bg-card/70
+        bg-card/80
         shadow-xl
         shadow-black/5
         backdrop-blur-xl
       "
     >
+
       <CardHeader
         className="
           relative
-          overflow-hidden
           px-7
           py-7
         "
       >
-        {/* subtle divider */}
 
         <div
           className="
             absolute
+            inset-x-7
             bottom-0
-            left-7
-            right-7
             h-px
             bg-border
           "
         />
 
-        {/* subtle gradient */}
 
         <div
           className="
             absolute
             inset-0
             bg-gradient-to-br
-            from-primary/[0.05]
+            from-primary/[0.06]
             via-transparent
-            to-transparent
             pointer-events-none
           "
         />
 
-        <div className="relative flex items-center gap-4">
+
+        <div
+          className="
+            relative
+            flex
+            items-center
+            gap-4
+          "
+        >
+
           <div
             className="
               flex
@@ -67,13 +84,16 @@ export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
               bg-primary/10
               text-primary
               ring-1
-              ring-primary/15
+              ring-primary/20
             "
           >
             <GitMerge className="h-5 w-5" />
           </div>
 
+
+
           <div>
+
             <CardTitle
               className="
                 font-heading
@@ -85,19 +105,25 @@ export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
               Consensus Answer
             </CardTitle>
 
+
             <p
               className="
                 mt-1
                 text-sm
-                leading-relaxed
                 text-muted-foreground
               "
             >
               One refined answer synthesized from multiple AI perspectives.
             </p>
+
           </div>
+
         </div>
+
+
       </CardHeader>
+
+
 
       <CardContent
         className="
@@ -105,20 +131,14 @@ export function ConsensusAnswer({ answer }: ConsensusAnswerProps) {
           py-8
         "
       >
-        <div
-          className="
-            prose
-            prose-neutral
-            dark:prose-invert
-            max-w-none
-            text-lg
-            leading-9
-            tracking-tight
-          "
-        >
-          <p className="whitespace-pre-wrap">{answer}</p>
-        </div>
+
+        <MarkdownRenderer
+          content={answer}
+        />
+
       </CardContent>
+
+
     </Card>
   );
 }
