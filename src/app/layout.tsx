@@ -6,7 +6,6 @@ import {
   Manrope,
 } from "next/font/google";
 
-
 import "./globals.css";
 
 import { cn } from "@/lib/utils";
@@ -58,7 +57,6 @@ export default function RootLayout({
         "
       >
           {children}
-        
       </body>
     </html>
   );
