@@ -6,7 +6,6 @@ import {
   Manrope,
 } from "next/font/google";
 
-import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 
@@ -58,14 +57,8 @@ export default function RootLayout({
           antialiased
         "
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
           {children}
-        </ThemeProvider>
+        
       </body>
     </html>
   );
