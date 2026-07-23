@@ -32,26 +32,26 @@ A single LLM response is a single sample from a single reasoning path. That has 
 |---|---|
 | **Incompleteness** | One model may miss an angle another would catch (e.g. performance vs. ecosystem vs. learning curve). |
 | **Model-specific bias** | Different models are trained differently and default to different tradeoffs, even on the same prompt. |
-| **No self-correction** | A single response has no mechanism to catch its own blind spots — there's nothing to check it against. |
+| **No self-correction** | A single response has no mechanism to catch its own blind spots - there's nothing to check it against. |
 
 ConsensusAI addresses this by treating "ask an AI" as a two-stage process instead of one call:
 
-1. **Divergence** — the same question is analyzed independently by multiple AI experts, each reasoning from a distinct angle.
-2. **Convergence** — a dedicated evaluator model reads all expert responses, identifies where they agree, where they conflict, and what each gets right, then produces one synthesized answer.
+1. **Divergence** - the same question is analyzed independently by multiple AI experts, each reasoning from a distinct angle.
+2. **Convergence** - a dedicated evaluator model reads all expert responses, identifies where they agree, where they conflict, and what each gets right, then produces one synthesized answer.
 
-The result isn't "pick the best response" — it's a new response, informed by all of them.
+The result isn't "pick the best response" - it's a new response, informed by all of them.
 
 ---
 
 ## Features
 
-- **Multi-model AI reasoning** — the same prompt is analyzed by multiple independent AI experts in parallel.
-- **Independent expert perspectives** — each expert reasons in isolation, with no visibility into the others' output, to avoid anchoring bias.
-- **Final answer synthesis** — a dedicated evaluator model reconciles all expert responses into one coherent answer.
-- **Streaming/loading experience** — clear progressive UI state while experts respond and while synthesis runs.
-- **Clean, modern interface** — minimal, distraction-free layout built around the question and the answer.
-- **Expandable expert reasoning view** — the final answer is shown by default; each expert's raw reasoning is available on demand for users who want to see how the answer was formed.
-- **Graceful API failure handling** — a failed provider doesn't fail the request; synthesis proceeds with whatever responses succeeded.
+- **Multi-model AI reasoning** - the same prompt is analyzed by multiple independent AI experts in parallel.
+- **Independent expert perspectives** - each expert reasons in isolation, with no visibility into the others' output, to avoid anchoring bias.
+- **Final answer synthesis** - a dedicated evaluator model reconciles all expert responses into one coherent answer.
+- **Streaming/loading experience** - clear progressive UI state while experts respond and while synthesis runs.
+- **Clean, modern interface** - minimal, distraction-free layout built around the question and the answer.
+- **Expandable expert reasoning view** - the final answer is shown by default; each expert's raw reasoning is available on demand for users who want to see how the answer was formed.
+- **Graceful API failure handling** - a failed provider doesn't fail the request; synthesis proceeds with whatever responses succeeded.
 
 ---
 
@@ -71,7 +71,7 @@ The result isn't "pick the best response" — it's a new response, informed by a
 > Go's syntax and concurrency model (goroutines, channels) are intentionally simple and can be picked up in weeks. Rust's ownership and borrow-checker model is powerful but has a steeper, often frustrating learning curve for newcomers.
 
 **Final Consensus:**
-> If your priority is fast onboarding and you're building backend services or cloud infrastructure, Go is the more pragmatic choice — its ecosystem and simplicity pay off quickly. If you're working on performance-critical or systems-level software where memory safety without a garbage collector matters, Rust is worth the steeper learning curve. For most people starting out with backend or cloud work, Go is the lower-friction path; Rust is the stronger investment if systems programming is the actual goal.
+> If your priority is fast onboarding and you're building backend services or cloud infrastructure, Go is the more pragmatic choice - its ecosystem and simplicity pay off quickly. If you're working on performance critical or systems-level software where memory safety without a garbage collector matters, Rust is worth the steeper learning curve. For most people starting out with backend or cloud work, Go is the lower-friction path; Rust is the stronger investment if systems programming is the actual goal.
 
 ---
 
@@ -100,7 +100,7 @@ The result isn't "pick the best response" — it's a new response, informed by a
 
 ## Architecture
 
-ConsensusAI is built as a strict layered pipeline. Each layer has one responsibility and depends only on the layer directly below it — never on implementation details further down the stack.
+ConsensusAI is built as a strict layered pipeline. Each layer has one responsibility and depends only on the layer directly below it never on implementation details further down the stack.
 
 ```mermaid
 flowchart TD
@@ -122,9 +122,9 @@ flowchart TD
 | Layer | Responsibility | Explicitly does NOT do |
 |---|---|---|
 | **Route Layer** | Parses and validates the HTTP request, calls the orchestrator, maps results to an HTTP response. | Contains no business logic, no prompt construction, no provider calls. |
-| **Orchestrator (Service Layer)** | Controls the AI workflow — fans requests out to providers in parallel, collects results, hands them to the evaluator. | Never talks to an SDK directly; only depends on the `AIProvider` interface. |
-| **Provider Layer** | Handles communication with a single AI model (auth, request shape, retries, response normalization). | Contains no orchestration or synthesis logic — a provider only knows how to answer one prompt. |
-| **Evaluator** | Compares all expert responses, identifies overlap and disagreement, and generates the final synthesized answer. | Doesn't call providers directly — it receives already-collected responses from the orchestrator. |
+| **Orchestrator (Service Layer)** | Controls the AI workflow - fans requests out to providers in parallel, collects results, hands them to the evaluator. | Never talks to an SDK directly; only depends on the `AIProvider` interface. |
+| **Provider Layer** | Handles communication with a single AI model (auth, request shape, retries, response normalization). | Contains no orchestration or synthesis logic a provider only knows how to answer one prompt. |
+| **Evaluator** | Compares all expert responses, identifies overlap and disagreement, and generates the final synthesized answer. | Doesn't call providers directly - it receives already-collected responses from the orchestrator. |
 
 The critical design constraint: **the orchestrator never imports a provider SDK.** It only knows about the `AIProvider` interface. This is what makes the "Gemini for everything today, mixed providers later" migration a config change rather than a rewrite.
 
@@ -154,17 +154,17 @@ sequenceDiagram
     UI-->>U: Render final answer + expandable expert views
 ```
 
-A single failed provider does not interrupt this flow — the orchestrator uses `Promise.allSettled`, so the evaluator receives whatever subset of responses succeeded, along with which experts failed.
+A single failed provider does not interrupt this flow the orchestrator uses `Promise.allSettled`, so the evaluator receives whatever subset of responses succeeded, along with which experts failed.
 
 ---
 
 ## AI Architecture
 
-This is the part of the project that isn't UI or CRUD — it's the actual engineering problem. Anyone can call an LLM API. The design challenge here is **orchestrating multiple untrusted, slow, independently-failing external services and reducing them to one reliable answer**, without the system falling apart when one of them misbehaves.
+This is the part of the project that isn't UI or CRUD it's the actual engineering problem. Anyone can call an LLM API. The design challenge here is **orchestrating multiple untrusted, slow, independently-failing external services and reducing them to one reliable answer**, without the system falling apart when one of them misbehaves.
 
 ### The core abstraction: `AIProvider`
 
-Every AI model in this system — regardless of vendor — is accessed through a single interface:
+Every AI model in this system regardless of vendor is accessed through a single interface:
 
 ```ts
 interface AIProvider {
@@ -173,9 +173,9 @@ interface AIProvider {
 }
 ```
 
-Nothing above the provider layer — not the orchestrator, not the evaluator, not the API route — ever imports a vendor SDK directly. They depend on this interface only. This is a straightforward application of the **Dependency Inversion Principle**: high-level orchestration logic depends on an abstraction, not on Gemini's or OpenAI's SDK shape.
+Nothing above the provider layer - not the orchestrator, not the evaluator, not the API route - ever imports a vendor SDK directly. They depend on this interface only. This is a straightforward application of the **Dependency Inversion Principle**: high-level orchestration logic depends on an abstraction, not on Gemini's or OpenAI's SDK shape.
 
-The payoff is concrete, not theoretical: the project currently runs every expert role on Gemini for cost reasons. Migrating any role to OpenAI or Claude is a **one-line change in `config/models.ts`** — zero changes to orchestration, evaluation, error handling, or API contracts. That's the test of whether an abstraction is real or decorative, and this one passes it.
+The payoff is concrete, not theoretical: the project currently runs every expert role on Gemini for cost reasons. Migrating any role to OpenAI or Claude is a **one-line change in `config/models.ts`** zero changes to orchestration, evaluation, error handling, or API contracts. That's the test of whether an abstraction is real or decorative, and this one passes it.
 
 ### Why parallel dispatch, not sequential
 
@@ -187,16 +187,16 @@ Experts are called concurrently via `Promise.allSettled`, not `Promise.all`. The
 
 ### Why a separate evaluation stage exists
 
-Fan-out to multiple models is the easy half of this system. The hard half is turning three (possibly contradictory) responses into one answer that's better than any single one of them — that requires a reasoning pass, not string concatenation. The evaluator is architected as **just another `AIProvider` consumer** with a different prompt template (`evaluator.prompt.ts` vs `expert.prompt.ts`), which means the synthesis stage inherits the same retry, timeout, and error-handling guarantees as every expert call, instead of being a special-cased code path.
+Fan-out to multiple models is the easy half of this system. The hard half is turning three (possibly contradictory) responses into one answer that's better than any single one of them that requires a reasoning pass, not string concatenation. The evaluator is architected as **just another `AIProvider` consumer** with a different prompt template (`evaluator.prompt.ts` vs `expert.prompt.ts`), which means the synthesis stage inherits the same retry, timeout, and error-handling guarantees as every expert call, instead of being a special-cased code path.
 
 ### What this demonstrates
 
 | Engineering concern | How it's addressed |
 |---|---|
-| **Vendor coupling** | Fully abstracted behind `AIProvider` — swapping or adding a model touches one config line. |
+| **Vendor coupling** | Fully abstracted behind `AIProvider` - swapping or adding a model touches one config line. |
 | **Partial failure** | `Promise.allSettled` at the orchestration layer; the system degrades, it doesn't collapse. |
-| **Separation of orchestration vs. reasoning** | Orchestrator moves data; it never makes judgment calls about response quality — that's the evaluator's job alone. |
-| **Testability** | Because providers are an interface, they're trivially mockable — the orchestrator and evaluator can be tested without hitting a real API. |
+| **Separation of orchestration vs. reasoning** | Orchestrator moves data; it never makes judgment calls about response quality - that's the evaluator's job alone. |
+| **Testability** | Because providers are an interface, they're trivially mockable - the orchestrator and evaluator can be tested without hitting a real API. |
 | **Cost/latency tradeoffs** | Role-to-model mapping is centralized in one config file, so cost optimization (e.g. cheaper model for less critical roles) is a config decision, not a code change. |
 
 This is the layer worth reading first if you're evaluating this project as a backend engineering sample rather than a UI demo.
@@ -245,20 +245,20 @@ flowchart LR
     E --> F[Final Answer]
 ```
 
-Each expert produces its response independently — no expert sees another expert's output, which avoids anchoring (experts converging prematurely just because they saw an earlier answer first). The evaluator is the only stage that sees everything at once, and its job is specifically to reduce disagreement and surface the strongest reasoning from each response rather than simply concatenating them.
+Each expert produces its response independently no expert sees another expert's output, which avoids anchoring (experts converging prematurely just because they saw an earlier answer first). The evaluator is the only stage that sees everything at once, and its job is specifically to reduce disagreement and surface the strongest reasoning from each response rather than simply concatenating them.
 
 ---
 
 ## Design Decisions
 
 **Why multiple AI agents instead of one?**
-Different models — and different prompting strategies applied to the same model — produce different reasoning patterns. Sampling multiple independent perspectives surfaces disagreement that a single response would hide entirely.
+Different models - and different prompting strategies applied to the same model produce different reasoning patterns. Sampling multiple independent perspectives surfaces disagreement that a single response would hide entirely.
 
 **Why a separate evaluator model instead of just merging responses?**
-Naively joining multiple responses produces noise, redundancy, and unresolved contradictions. A dedicated synthesis step is what turns "three opinions" into "one answer" — it has to actively resolve disagreement, not just concatenate.
+Naively joining multiple responses produces noise, redundancy, and unresolved contradictions. A dedicated synthesis step is what turns "three opinions" into "one answer" it has to actively resolve disagreement, not just concatenate.
 
 **Why a service-based architecture?**
-To keep AI providers replaceable. The orchestrator depends on an `AIProvider` interface, not on any SDK. Swapping or adding a provider (OpenAI, Claude) means writing one new provider file and updating a config mapping — no changes to orchestration, evaluation, or API logic.
+To keep AI providers replaceable. The orchestrator depends on an `AIProvider` interface, not on any SDK. Swapping or adding a provider (OpenAI, Claude) means writing one new provider file and updating a config mapping no changes to orchestration, evaluation, or API logic.
 
 **Why TypeScript?**
 AI responses are inherently unpredictable in shape and content. Strong typing at every layer boundary (`types/ai.ts`, `types/api.ts`, `types/response.ts`) forces response handling to be explicit rather than assumed, which matters more here than in a typical CRUD app.
@@ -267,21 +267,21 @@ AI responses are inherently unpredictable in shape and content. Strong typing at
 
 ## Error Handling
 
-Failures are expected, not exceptional — external AI APIs fail, rate-limit, and time out regularly, so the pipeline is built to degrade gracefully rather than fail outright.
+Failures are expected, not exceptional external AI APIs fail, rate-limit, and time out regularly, so the pipeline is built to degrade gracefully rather than fail outright.
 
 | Scenario | Behavior |
 |---|---|
 | One provider fails or times out | Orchestrator continues with the remaining successful responses; the evaluator is informed which expert perspective is missing. |
-| All providers fail | Request fails fast with a user-friendly error — no partial or misleading synthesis is attempted. |
+| All providers fail | Request fails fast with a user-friendly error no partial or misleading synthesis is attempted. |
 | Evaluator fails after successful expert responses | Raw expert responses are still available to the user rather than surfacing a hard error. |
-| Invalid request body | Rejected at the API boundary via Zod validation before any AI call is made — returns `400`, not `500`. |
+| Invalid request body | Rejected at the API boundary via Zod validation before any AI call is made - returns `400`, not `500`. |
 | Unexpected provider error | Caught and normalized at the provider layer so the orchestrator never has to handle SDK-specific error shapes. |
 
 ---
 
 ## UI / UX Design
 
-**Philosophy:** a premium, calm AI product feel — the interface should feel considered, not templated.
+**Philosophy:** a premium, calm AI product feel the interface should feel considered, not templated.
 
 **Palette**
 
@@ -296,7 +296,7 @@ Failures are expected, not exceptional — external AI APIs fail, rate-limit, an
 - Glassmorphism accents
 - Soft shadows, rounded corners
 - Generous spacing
-- Calm, restrained animations — no motion for motion's sake
+- Calm, restrained animations no motion for motion's sake
 
 **Typography**
 - **Geist** for body text
@@ -327,7 +327,7 @@ Create a `.env.local` file in the project root:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 
-# Optional — required only once additional providers are enabled
+# Optional - required only once additional providers are enabled
 # OPENAI_API_KEY=
 # ANTHROPIC_API_KEY=
 ```
